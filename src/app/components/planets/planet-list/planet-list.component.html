@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Missions</h2>
+        <button class="btn btn-primary" routerLink="/planets/new">Add New Planet</button>
+    </div>
+
+    <div *ngIf="loading" class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Climate</th>
+                    <th>Terrain</th>
+                    <th>Population</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let planet of planets">
+                    <td>{{ planet.name }}</td>
+                    <td>{{ planet.type }}</td>
+                    <td>{{ planet.climate }}</td>
+                    <td>{{ planet.terrain }}</td>
+                    <td>{{ planet.population }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary me-2"
+                            [routerLink]="['/planets/edit', planet.id]">Edit</button>
+                        <button class="btn btn-sm btn-danger" (click)="deletePlanet(planet.id!)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

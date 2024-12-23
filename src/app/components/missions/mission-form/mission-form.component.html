@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Edit' : 'Add' }} Mission</h2>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <form [formGroup]="missionForm" (ngSubmit)="onSubmit()" class="mt-4">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+      <div *ngIf="missionForm.get('name')?.invalid && missionForm.get('name')?.touched" class="text-danger">
+        Name is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Date</label>
+      <input type="date" class="form-control" id="date" formControlName="date" value="{{ missionDate | date:'yyyy-MM-dd' }}">
+      <div *ngIf="missionForm.get('date')?.invalid && missionForm.get('date')?.touched" class="text-danger">
+        Date is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="planetId" class="form-label">Planet</label>
+      <select class="form-select" id="planetId" formControlName="planetId">
+        <option value="">Select a planet</option>
+        <option *ngFor="let planet of planets" [value]="planet.id">
+          {{ planet.name }}
+        </option>
+      </select>
+      <div *ngIf="missionForm.get('planetId')?.invalid && missionForm.get('planetId')?.touched" class="text-danger">
+        Planet is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
+      <div *ngIf="missionForm.get('description')?.invalid && missionForm.get('description')?.touched" class="text-danger">
+        Description is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!missionForm.valid || loading">
+      {{ isEditMode ? 'Update' : 'Create' }} Mission
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/missions">
+      Cancel
+    </button>
+  </form>
+</div>

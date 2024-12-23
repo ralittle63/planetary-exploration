@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Planetary Exploration Logs</h1>
+    <p class="lead">Welcome to the planetary exploration management system</p>
+    <hr class="my-4">
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let feature of features">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <i [class]="feature.icon + ' fs-1 mb-3'"></i>
+          <h5 class="card-title">{{ feature.title }}</h5>
+          <p class="card-text">{{ feature.description }}</p>
+          <a [routerLink]="feature.route" class="btn btn-primary">Manage {{ feature.title }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

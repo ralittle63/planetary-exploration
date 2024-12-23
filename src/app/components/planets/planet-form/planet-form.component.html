@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <h2>{{ isEditMode ? 'Edit' : 'Add' }} Planet</h2>
+  <form [formGroup]="planetForm" (ngSubmit)="onSubmit()" class="mt-4">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+      <div *ngIf="planetForm.get('name')?.invalid && planetForm.get('name')?.touched" class="text-danger">
+        Name is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="type" class="form-label">Type</label>
+      <input type="text" class="form-control" id="type" formControlName="type">
+      <div *ngIf="planetForm.get('type')?.invalid && planetForm.get('type')?.touched" class="text-danger">
+        Type is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="climate" class="form-label">Climate</label>
+      <input type="text" class="form-control" id="climate" formControlName="climate">
+      <div *ngIf="planetForm.get('climate')?.invalid && planetForm.get('climate')?.touched" class="text-danger">
+        Climate is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="terrain" class="form-label">Terrain</label>
+      <input type="text" class="form-control" id="terrain" formControlName="terrain">
+      <div *ngIf="planetForm.get('terrain')?.invalid && planetForm.get('terrain')?.touched" class="text-danger">
+        Terrain is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="population" class="form-label">Population</label>
+      <input type="text" class="form-control" id="population" formControlName="population">
+      <div *ngIf="planetForm.get('population')?.invalid && planetForm.get('population')?.touched" class="text-danger">
+        Population is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!planetForm.valid || loading">
+      {{ isEditMode ? 'Update' : 'Create' }} Planet
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/planets">
+      Cancel
+    </button>
+  </form>
+</div>

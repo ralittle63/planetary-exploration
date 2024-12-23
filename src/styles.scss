@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import 'node_modules/bootstrap/dist/css/bootstrap.min.css'; */
+/* @import 'node_modules/bootstrap-icons/font/bootstrap-icons.css'; */
+
+
+body {
+  background-color: #f8f9fa;
+}
+
+.card {
+  transition: transform 0.2s;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.table {
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+}
+
+/* Importing Bootstrap SCSS file. */
+/* @import 'bootstrap/scss/bootstrap'; */
